@@ -21,11 +21,18 @@ const copy_w_p = new CopyWebpackPlugin([
 const html_w_p = new HtmlWebpackPlugin({ template: "./src/index.html" });
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: ["babel-polyfill", "./src/index.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
   },
+
+  resolve: {
+    modulesDirectories: ["node_modules", "./src"], // import时到哪些地方去寻找模块
+    extensions: ["", ".js", ".jsx"], // require的时候可以直接使用require('file')，不用require('file.js')
+    alias: {} //别名
+  },
+
   module: {
     rules: [
       {
