@@ -33,8 +33,8 @@ module.exports = {
     port: 3888
   },
   resolve: {
-    modulesDirectories: ["node_modules", "./src"], // import时到哪些地方去寻找模块
-    extensions: ["", ".js", ".jsx"], // require的时候可以直接使用require('file')，不用require('file.js')
+    //modulesDirectories: ["node_modules", "./src"], // import时到哪些地方去寻找模块
+    //extensions: ["", ".js", ".jsx"], // require的时候可以直接使用require('file')，不用require('file.js')
     alias: {} //别名
   },
 
