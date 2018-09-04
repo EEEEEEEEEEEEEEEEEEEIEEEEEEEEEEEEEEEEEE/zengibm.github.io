@@ -33,9 +33,11 @@ module.exports = {
     port: 3888
   },
   resolve: {
-    //modulesDirectories: ["node_modules", "./src"], // import时到哪些地方去寻找模块
-    //extensions: ["", ".js", ".jsx"], // require的时候可以直接使用require('file')，不用require('file.js')
-    alias: {} //别名
+    modules: ["node_modules"], // import时到哪些地方去寻找模块
+    extensions: [".web.js", ".mjs", ".js", ".json", ".web.jsx", ".jsx"], // require的时候可以直接使用require('file')，不用require('file.js')
+    alias: {
+      antdcss: "antd/dist/antd.min.css"
+    } //别名
   },
 
   module: {
