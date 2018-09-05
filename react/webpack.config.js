@@ -60,23 +60,28 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader"
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              plugins: [precss(), autoprefixer(), mqpacker()]
-            }
-          },
-          {
-            loader: "sass-loader"
-          }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
+          use: ["css-loader", "sass-loader"]
+        })
+        // use: [
+        //   {
+        //     loader: "style-loader"
+        //   },
+        //   {
+        //     loader: "css-loader"
+        //   },
+        //   {
+        //     loader: "postcss-loader",
+        //     options: {
+        //       plugins: [precss(), autoprefixer(), mqpacker()]
+        //     }
+        //   },
+        //   {
+        //     loader: "sass-loader"
+        //   }
+        // ]
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg|jpg|gif)$/,
