@@ -27,8 +27,8 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: './',
-    host: 'localhost',
+    contentBase: "./",
+    host: "localhost",
     compress: true,
     port: 3888
   },
@@ -84,8 +84,19 @@ module.exports = {
         // ]
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg|jpg|gif)$/,
+        test: /\.(woff|woff2|eot|ttf|)$/,
         use: ["file-loader"]
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },
