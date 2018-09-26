@@ -63,41 +63,57 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
-          use: ["css-loader", "sass-loader"]
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                //minimize: true,//是否压缩css
+                modules: true,
+                localIdentName: "[path][name]__[local]--[hash:base64:5]",
+                getLocalIdent: (
+                  context,
+                  localIdentName,
+                  localName,
+                  options
+                ) => {
+                  return "whatever_random_class_name";
+                }
+              }
+            },
+            "sass-loader",
+            {
+              loader: "postcss-loader",
+              options: {
+                plugins: [precss(), autoprefixer(), mqpacker()]
+              }
+            }
+          ]
         })
-        // use: [
-        //   {
-        //     loader: "style-loader"
-        //   },
-        //   {
-        //     loader: "css-loader"
-        //   },
-        //   {
-        //     loader: "postcss-loader",
-        //     options: {
-        //       plugins: [precss(), autoprefixer(), mqpacker()]
-        //     }
-        //   },
-        //   {
-        //     loader: "sass-loader"
-        //   }
-        // ]
+      },
+      
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        loader: "url-loader",
+        options: {
+          limit: 10000,
+          fallback: "file-loader"
+        }
       },
       {
-        test: /\.(woff|woff2|eot|ttf|)$/,
-        use: ["file-loader"]
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
         use: [
           {
-            loader: "url-loader",
+            loader: "file-loader",
             options: {
-              limit: 8192
+              name: "[path][name].[ext]",
+              // publicPath: "dist/",
+              outputPath: "./images/",
+              //emitFile: true //默认情况下会生成文件，可以通过将此项设置为 false 来禁用（例如使用了服务端的 packages）。
+              //useRelativePath: process.env.NODE_ENV === "production" //如果你希望为每个文件生成一个相对 URL 的 context 时，应该将 useRelativePath 设置为 true。
             }
           }
         ]
-      }
+      },
     ]
   },
   plugins: [clean_w_p, extract_w_p, copy_w_p, html_w_p]
