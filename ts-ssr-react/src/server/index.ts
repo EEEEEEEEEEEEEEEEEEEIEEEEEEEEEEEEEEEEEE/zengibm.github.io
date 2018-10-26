@@ -1,6 +1,5 @@
 import * as Koa from 'koa';
 import serverConfig from './config';
-import { createContext } from 'vm';
 const app = new Koa()
 const { port } = serverConfig;
 

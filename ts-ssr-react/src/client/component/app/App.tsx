@@ -9,5 +9,4 @@ class App extends React.PureComponent {
     }
 }
 
-
-export {App}
+export default App
