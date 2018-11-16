@@ -1,11 +1,17 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const mqpacker = require("css-mqpacker");
 const precss = require("precss");
 const autoprefixer = require("autoprefixer");
 const webpack = require("webpack");
 const path = require("path");
+const process = require("process");
 //插件实例
-
+console.log(process.env.NODE_ENV);
+const clean_w_p = new CleanWebpackPlugin(["../dist"], {
+  root: path.resolve(__dirname, ".."),
+  verbose: true
+});
 const extract_w_p = new ExtractTextPlugin({
   filename: "bundle.css",
   disable: false,
@@ -13,10 +19,10 @@ const extract_w_p = new ExtractTextPlugin({
 });
 
 module.exports = {
-  entry: ["babel-polyfill", path.resolve(__dirname, "../../src/index.js")],
+  entry: ["babel-polyfill", path.resolve(__dirname, "../src/index.js")],
   output: {
-    path: path.resolve(__dirname, "../public/admin"),
-    publicPath: "/public/admin", //如果react-router 在多级路由下找不到css 或者js 资源的话配置这个可以解决
+    path: path.resolve(__dirname, "../dist"),
+    publicPath: "/", //如果react-router 在多级路由下找不到css 或者js 资源的话配置这个可以解决
     filename: "bundle.js"
   },
 
@@ -34,7 +40,6 @@ module.exports = {
         exclude: /node_modules/,
         loaders: "babel-loader",
         query: {
-          // presets: ["es2015", "react"]
           presets: [
             "env",
             "es2015",
@@ -77,7 +82,7 @@ module.exports = {
             {
               loader: "css-loader",
               options: {
-                //minimize: true,//是否压缩css
+                minimize: process.env.NODE_ENV === "production", //是否压缩css
                 modules: false, //开启将会吧选择器变成随机字符串
                 // localIdentName: "[path][name]__[local]--[hash:base64:5]",
                 // getLocalIdent: (
@@ -88,7 +93,7 @@ module.exports = {
                 // ) => {
                 //   return "whatever_random_class_name";
                 // }
-                publicPath: "/public"
+                publicPath: "/"
               }
             },
             "sass-loader",
@@ -101,12 +106,12 @@ module.exports = {
           ]
         })
       },
-
       // {
       //   test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
       //   loader: "url-loader",
       //   options: {
-      //     limit: 10,
+      //     name: "[path][name].[ext]",
+      //     limit: 1024 * 10,
       //     fallback: "file-loader"
       //   }
       // },
@@ -118,7 +123,7 @@ module.exports = {
             options: {
               name: "[path][name].[ext]",
               // outputPath: 'images'
-              publicPath: "/public/admin",
+              publicPath: "/",
               emitFile: true //默认情况下会生成文件，可以通过将此项设置为 false 来禁用（例如使用了服务端的 packages）。
               //useRelativePath: process.env.NODE_ENV === "production" //如果你希望为每个文件生成一个相对 URL 的 context 时，应该将 useRelativePath 设置为 true。
             }
@@ -127,5 +132,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [extract_w_p]
+  plugins: [clean_w_p, extract_w_p]
 };

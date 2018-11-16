@@ -1,22 +1,22 @@
 const path = require("path");
+const process = require("process");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+process.env.NODE_ENV = "production";
 const config = require("./webpack.config.js");
 
-const clean_w_p = new CleanWebpackPlugin(["../static/dist"]);
-const copy_w_p = new CopyWebpackPlugin([
-  {
-    from: path.resolve(`${path.resolve(__dirname)}/../../src/files`),
-    to: path.resolve(`${path.resolve(__dirname)}/../public/admin/files`)
-  }
-]);
+// const copy_w_p = new CopyWebpackPlugin([
+//   {
+//     from: path.resolve(`${path.resolve(__dirname)}/../../src/files`),
+//     to: path.resolve(`${path.resolve(__dirname)}/../public/admin/files`)
+//   }
+// ]);
 const html_w_p = new HtmlWebpackPlugin({
   /**
    * https://webpack.docschina.org/plugins/html-webpack-plugin/
    */
-  template: path.resolve(__dirname, "../views/react.html"),
+  template: path.resolve(__dirname, "../public/index.html"),
   alwaysWriteToDisk: false,
   inject: true,
   hash: false,
@@ -42,15 +42,13 @@ const html_w_p = new HtmlWebpackPlugin({
     minifyURLs: true
   }
 });
-config.plugins.push(clean_w_p, copy_w_p, html_w_p);
+config.plugins.push(
+  //  copy_w_p,
+  html_w_p
+);
 
 const prodConfig = {
-  mode: "production",
-  // output: {
-  //   path: path.resolve(__dirname, "../public"),
-  //   publicPath: "/public", //如果react-router 在多级路由下找不到css 或者js 资源的话配置这个可以解决
-  //   filename: "bundle.js"
-  // },
+  mode: "production"
 };
 
 module.exports = Object.assign({}, config, prodConfig);

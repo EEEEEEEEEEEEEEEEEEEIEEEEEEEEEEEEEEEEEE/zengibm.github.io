@@ -1,36 +1,16 @@
-const path = require('path')
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+process.env.NODE_ENV = "dev";
 const config = require("./webpack.config.js");
 
 const html_w_p = new HtmlWebpackPlugin({
   /**
    * https://webpack.docschina.org/plugins/html-webpack-plugin/
    */
-  template: path.resolve(__dirname, '../views/index.html'),
+  template: path.resolve(__dirname, "../public/index.html"),
   alwaysWriteToDisk: false,
   inject: true,
-  hash: false,
-  // minify: {
-  //   collapseWhitespace: true,
-  //   decodeEntities: true,
-  //   html5: true,
-  //   processConditionalComments: true,
-  //   removeAttributeQuotes: true,
-  //   removeComments: true,
-  //   removeEmptyAttributes: true,
-  //   removeOptionalTags: true,
-  //   removeRedundantAttributes: true,
-  //   removeScriptTypeAttributes: true,
-  //   removeStyleLinkTypeAttributes: true,
-  //   removeTagWhitespace: true,
-  //   sortAttributes: true,
-  //   sortClassName: true,
-  //   useShortDoctype: true,
-  //   keepClosingSlash: true,
-  //   minifyJS: true,
-  //   minifyCSS: true,
-  //   minifyURLs: true
-  // }
+  hash: false
 });
 
 config.plugins.push(html_w_p);
@@ -57,13 +37,7 @@ const devConfig = {
       version: false,
       warnings: true
     }
-    // proxy: {
-    //   "/user/register": {
-    //     target: "http://localhost:9998"
-    //   }
-    // }
-  },
-
+  }
 };
 
 module.exports = Object.assign({}, config, devConfig);
