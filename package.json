@@ -1,5 +1,20 @@
 {
-  "dependencies": {
-    "url-loader": "^1.1.1"
-  }
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zengibm/webpack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zengibm/webpack/issues"
+  },
+  "homepage": "https://github.com/zengibm/webpack#readme"
 }
