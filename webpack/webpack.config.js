@@ -1,10 +1,11 @@
+const path = require('path');
+const process = require('process');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const createElectronReloadWebpackPlugin = require('electron-reload-webpack-plugin');
 const mqpacker = require('css-mqpacker');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
-const path = require('path');
-const process = require('process');
 //插件实例
 console.log(process.env.NODE_ENV);
 
@@ -13,8 +14,15 @@ const extract_w_p = new ExtractTextPlugin({
   disable: false,
   allChunks: true
 });
-
+const ElectronReloadWebpackPlugin = createElectronReloadWebpackPlugin({
+  // Path to `package.json` file with main field set to main process file path, or just main process file path
+  // path: path.join(__dirname, './build/backend.js'),
+  // or just `path: './'`,
+  // Other 'electron-connect' options
+  logLevel: 0
+});
 module.exports = {
+  target: 'electron-renderer',
   entry: {
     index: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')]
   },
@@ -174,5 +182,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [extract_w_p]
+  plugins: [extract_w_p, ElectronReloadWebpackPlugin()]
 };

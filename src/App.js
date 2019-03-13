@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
-import { app, BrowserView } from 'electron';
 export default class App extends Component {
-  createWindow(){
-  
-  }
   componentWillMount()
   {
-
+    console.log('im app')
   }
   render() {
     return (
       <div>
-        
+        <h1>im a333p133311p</h1>
+        <h1>im app</h1>
       </div>
     )
   }
