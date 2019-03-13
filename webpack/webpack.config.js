@@ -3,7 +3,6 @@ const mqpacker = require('css-mqpacker');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const path = require('path');
 const process = require('process');
 //插件实例
@@ -44,15 +43,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          compilerOptions: {
-            preserveWhitespace: false
-          }
-        }
-      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -142,7 +132,6 @@ module.exports = {
                 ]
               })
             : [
-                'vue-style-loader',
                 'css-loader',
                 'sass-loader',
                 {
@@ -185,5 +174,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [extract_w_p, new VueLoaderPlugin()]
+  plugins: [extract_w_p]
 };
