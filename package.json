@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "electron": "electron .",
-    "dev": "nodemon server/index.js",
+    "dev": "node server/index.js",
     "prod": "cd dist && http-server -p 3999",
     "build": "webpack  --config webpack/webpack.prod.js"
   },
