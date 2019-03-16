@@ -44,7 +44,10 @@ class Time extends React.Component {
     );
   }
 }
-
+const divStyle = {
+  width: '100px',
+  background: "linearGradient(to right, pink, pink) noRepeat center / 100%"
+}
 export default class App extends Component {
   componentWillMount() {
     console.log('im app');
