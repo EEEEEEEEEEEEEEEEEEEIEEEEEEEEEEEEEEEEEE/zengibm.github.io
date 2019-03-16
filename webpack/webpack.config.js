@@ -86,13 +86,13 @@ module.exports = {
         use:
           process.env.NODE_ENV === 'production'
             ? ExtractTextPlugin.extract({
-                fallback: 'vue-style-loader',
                 //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
                 use: [
+                  'style-loader',
                   {
                     loader: 'css-loader',
                     options: {
-                      minimize: process.env.NODE_ENV === 'production', //是否压缩css
+                      minimize: true, //是否压缩css
                       modules: false, //开启将会吧选择器变成随机字符串
                       // localIdentName: "[path][name]__[local]--[hash:base64:5]",
                       // getLocalIdent: (
@@ -103,13 +103,17 @@ module.exports = {
                       // ) => {
                       //   return "whatever_random_class_name";
                       // }
+                      importLoaders: 1,
                       publicPath: '/'
                     }
                   },
                   {
                     loader: 'postcss-loader',
                     options: {
-                      plugins: [precss(), autoprefixer(), mqpacker()]
+                      config: {
+                        path: '.config'
+                      }
+                      // plugins: [precss(), autoprefixer(), mqpacker()]
                     }
                   },
                   {
@@ -132,7 +136,18 @@ module.exports = {
                 ]
               })
             : [
+                'style-loader',
                 'css-loader',
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    config: {
+                      path: path.join(
+                        process.cwd(),'webpack/postcss.config.js'
+                      )
+                    }
+                  }
+                },
                 'sass-loader',
                 {
                   loader: 'sass-resources-loader',

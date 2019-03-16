@@ -2,6 +2,8 @@
 @import './variable.scss';
 body {
     h1 {
-        color: $color
+        color: $color;
+        box-sizing: border-box;
+        background: linear-gradient(to right, pink, blue);
     }
 }
