@@ -80,14 +80,14 @@ module.exports = {
             //     /**https://youzan.github.io/zent/zh/guides/babel-plugin-zent#babel-plugin-zent */
             //   }
             // ],
-            [
-              'import',
-              {
-                libraryName: 'antd',
-                libraryDirectory: 'es',
-                style: 'css' // `style: true` 会加载 less 文件
-              }
-            ]
+            // [
+            //   'import',
+            //   {
+            //     libraryName: 'antd',
+            //     libraryDirectory: 'es',
+            //     style: 'css' // `style: true` 会加载 less 文件
+            //   }
+            // ]
           ]
         }
       },
@@ -99,6 +99,7 @@ module.exports = {
                 fallback: 'vue-style-loader',
                 //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
                 use: [
+                  'style-loader',
                   {
                     loader: 'css-loader',
                     options: {
@@ -119,7 +120,12 @@ module.exports = {
                   {
                     loader: 'postcss-loader',
                     options: {
-                      plugins: [precss(), autoprefixer(), mqpacker()]
+                      config: {
+                        path: path.join(
+                          process.cwd(),
+                          'webpack/postcss.config.js'
+                        )
+                      }
                     }
                   },
                   {
@@ -142,8 +148,20 @@ module.exports = {
                 ]
               })
             : [
+                'style-loader',
                 'vue-style-loader',
                 'css-loader',
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    config: {
+                      path: path.join(
+                        process.cwd(),
+                        'webpack/postcss.config.js'
+                      )
+                    }
+                  }
+                },
                 'sass-loader',
                 {
                   loader: 'sass-resources-loader',
