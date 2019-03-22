@@ -5,14 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev1": "webpack-dev-server --config webpack/webpack.dev.js",
-    "dev": "node server/index.js",
+    "ser": "nodemon server/index.js",
+    "dev": "node webpack/index.js",
     "prod": "cd dist && http-server -p 3999",
     "build": "webpack  --config webpack/webpack.prod.js"
+  },
+  "eslintConfig": {
+    "extends": "./webpack/tools/.eslintrc"
+  },
+  "babel": {
+    "extends": "./webpack/tools/.babelrc"
   },
   "dependencies": {
     "antd": "^3.10.7",
     "axios": "^0.18.0",
+    "crawler": "^1.2.0",
     "echarts": "^4.1.0",
     "ejs": "^2.6.1",
     "history": "^4.7.2",

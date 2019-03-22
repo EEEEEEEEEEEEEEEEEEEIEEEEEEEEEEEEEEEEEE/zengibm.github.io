@@ -1,10 +1,8 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const mqpacker = require('css-mqpacker');
-const precss = require('precss');
-const autoprefixer = require('autoprefixer');
-const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const process = require('process');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
 //插件实例
 console.log(process.env.NODE_ENV);
 
@@ -13,7 +11,6 @@ const extract_w_p = new ExtractTextPlugin({
   disable: false,
   allChunks: true
 });
-
 module.exports = {
   entry: {
     index: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')]
@@ -46,40 +43,8 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loaders: 'babel-loader',
-        query: {
-          presets: [
-            'env',
-            'es2015',
-            'stage-0',
-            'react'
-          ] /**加入babel-preset-stage-0 并使用这个配置就能使用es7的语法,但是它回报更多的错误,所以我放弃了它 */,
-          plugins: [
-            'transform-runtime',
-            'transform-decorators-legacy', //http://es6.ruanyifeng.com/#docs/decorator#%E7%B1%BB%E7%9A%84%E4%BF%AE%E9%A5%B0
-            // "transform-class-properties",
-            // "transform-object-rest-spread",
-            // "emotion",
-            // [
-            //   "zent",
-            //   {
-            //     moduleMappingFile: "zent/lib/module-mapping.json",
-            //     noModuleRewrite: false,
-            //     automaticStyleImport: true,
-            //     useRawStyle: false
-            //     /**https://youzan.github.io/zent/zh/guides/babel-plugin-zent#babel-plugin-zent */
-            //   }
-            // ],
-            [
-              'import',
-              {
-                libraryName: 'antd',
-                libraryDirectory: 'es',
-                style: 'css' // `style: true` 会加载 less 文件
-              }
-            ]
-          ]
-        }
+        loaders: 'babel-loader'
+       
       },
       {
         test: /\.(scss|css)$/,
@@ -111,7 +76,10 @@ module.exports = {
                     loader: 'postcss-loader',
                     options: {
                       config: {
-                        path: '.config'
+                        path: path.join(
+                          process.cwd(),
+                          'webpack/tools/postcss.config.js'
+                        )
                       }
                       // plugins: [precss(), autoprefixer(), mqpacker()]
                     }
@@ -143,7 +111,8 @@ module.exports = {
                   options: {
                     config: {
                       path: path.join(
-                        process.cwd(),'webpack/postcss.config.js'
+                        process.cwd(),
+                        'webpack/tools/postcss.config.js'
                       )
                     }
                   }

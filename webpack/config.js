@@ -4,6 +4,6 @@ module.exports = {
   views: path.join(__dirname, '../views'),
   static: {},
   listen: {
-    port: 9999
+    port: 9998
   },
 };
