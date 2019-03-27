@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const Koa = require('koa');
 const router = require('koa-router')();
 const views = require('koa-views');
@@ -6,8 +7,8 @@ const koaStatic = require('koa-static');
 const compress = require('koa-compress');
 const koaBody = require('./libs/koaBody');
 const cors = require('./libs/cors');
-const Crawel = require('crawler')
 const app = new Koa();
+
 
 class AngelConfig {
   constructor(options) {
@@ -78,8 +79,7 @@ class AngelServer extends AngelConfig {
       ctx.set('X-Response-Time', `${ms}ms`);
     });
     //路由管理
-    this.app.use(this.router('routes'))
-      .use(router.allowedMethods());
+    this.app.use(this.router('routes')).use(router.allowedMethods());
 
     // 静态资源
     this.app.use(koaStatic(this.config.root, this.config.static));

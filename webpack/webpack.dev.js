@@ -1,8 +1,10 @@
 const path = require('path');
+
+process.env.NODE_ENV = 'dev';
+
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./webpack.config.js');
-process.env.NODE_ENV = 'dev';
 
 const html_w_p = new HtmlWebpackPlugin({
   /**
