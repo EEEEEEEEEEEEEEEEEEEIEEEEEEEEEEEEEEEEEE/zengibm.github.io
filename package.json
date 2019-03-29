@@ -48,6 +48,7 @@
     "request": "^2.88.0",
     "sass-resources-loader": "^2.0.0",
     "sequelize": "^4.39.0",
+    "superagent": "^5.0.2",
     "ws": "^6.1.0"
   },
   "devDependencies": {
