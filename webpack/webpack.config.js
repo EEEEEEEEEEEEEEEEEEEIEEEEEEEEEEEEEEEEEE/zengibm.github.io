@@ -52,8 +52,8 @@ module.exports = {
           process.env.NODE_ENV === 'production'
             ? ExtractTextPlugin.extract({
                 //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
+                fallback: 'style-loader',
                 use: [
-                  'style-loader',
                   {
                     loader: 'css-loader',
                     options: {
@@ -104,7 +104,6 @@ module.exports = {
                 ]
               })
             : [
-                'style-loader',
                 'css-loader',
                 {
                   loader: 'postcss-loader',
