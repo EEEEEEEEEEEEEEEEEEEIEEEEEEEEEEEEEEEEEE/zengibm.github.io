@@ -1,12 +1,11 @@
-import React, { Component } from "react";
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
-import AuthorizedRoute from "./AuthorizedRoute";
-import Login from "./pages/Login/Login";
-import Layout from "./pages/Layout/Layout";
-import NoFound from "./pages/NoFound/NoFound";
+import React, { Component } from 'react';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import AuthorizedRoute from './AuthorizedRoute';
+import Login from './pages/Login/Login';
+import Layout from './pages/Layout/Layout';
+import NoFound from './pages/NoFound/NoFound';
 
-const whiteList = ["/login", "/register"];
-
+const whiteList = ['/login', '/register'];
 
 @withRouter
 export default class App extends Component {
@@ -17,15 +16,19 @@ export default class App extends Component {
     const loginRedirectUrl =
       whiteList.indexOf(this.props.location.pathname) > -1
         ? this.props.location.pathname
-        : "/login";
+        : '/login';
     return (
       <div>
-        <Switch>
+        <h1>hello, wolrd</h1>
+        <p>
+          范媛是傻逼!
+        </p>
+        {/* <Switch>
           <Route path="/login" component={Login} />
           <Redirect from="/" exact to={loginRedirectUrl} />
           <AuthorizedRoute path="/path" component={Layout} />
           <Route component={NoFound} />
-        </Switch>
+        </Switch> */}
       </div>
     );
   }

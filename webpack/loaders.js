@@ -1,0 +1,114 @@
+const path = require('path'),
+  fs = require('path'),
+  process = require('process'),
+  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  __DEV__ = (process.env.NODE_ENV || 'development') === 'development';
+
+const base_css = {
+  dev: [
+    'style-loader',
+    'css-loader',
+    {
+      loader: 'postcss-loader',
+      options: {
+        config: {
+          path: path.join(process.cwd(), 'webpack/tools/postcss.config.js')
+        }
+      }
+    },
+    'sass-loader',
+    {
+      loader: 'sass-resources-loader',
+      options: {
+        // 你也可以从一个文件读取，例如 `variables.scss`
+        resources: path.join(process.cwd(), 'src/common/scss/variable.scss')
+      }
+    }
+  ],
+  prod: ExtractTextPlugin.extract({
+    //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
+    fallback: 'style-loader',
+    use: [
+      {
+        loader: 'css-loader',
+        options: {
+          minimize: process.env.NODE_ENV === 'production', //是否压缩css
+          modules: false, //开启将会吧选择器变成随机字符串
+          // localIdentName: "[path][name]__[local]--[hash:base64:5]",
+          // getLocalIdent: (
+          //   context,
+          //   localIdentName,
+          //   localName,
+          //   options
+          // ) => {
+          //   return "whatever_random_class_name";
+          // }
+          importLoaders: 1,
+          publicPath: '/'
+        }
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          config: {
+            path: path.join(process.cwd(), 'webpack/tools/postcss.config.js')
+          }
+        }
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          // 你也可以从一个文件读取，例如 `variables.scss`
+          // data: path.join(process.cwd(), 'src/index.scss')
+        }
+      },
+      {
+        loader: 'sass-resources-loader',
+        options: {
+          // 你也可以从一个文件读取，例如 `variables.scss`
+          resources: path.join(process.cwd(), 'src/common/scss/variable.scss')
+        }
+      }
+    ]
+  })
+};
+
+const baseConfig = [
+  {
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    loaders: 'babel-loader'
+  },
+  {
+    test: /\.(scss|css)$/,
+    use: __DEV__ ? base_css.dev : base_css.prod
+  },
+  {
+    test: /\.(png|jpg)$/,
+    loader: 'url-loader',
+    options: {
+      name: '[name].[ext]',
+      limit: 1024 * 10,
+      outputPath: 'images',
+      fallback: 'file-loader'
+    }
+  },
+  {
+    test: /\.(eot|woff|svg|ttf|woff2|gif|appcache|mp3)(\?|$)/,
+    exclude: /^node_modules$/,
+    use: [
+      {
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'files',
+          publicPath: '/',
+          emitFile: true //默认情况下会生成文件，可以通过将此项设置为 false 来禁用（例如使用了服务端的 packages）。
+          //useRelativePath: process.env.NODE_ENV === "production" //如果你希望为每个文件生成一个相对 URL 的 context 时，应该将 useRelativePath 设置为 true。
+        }
+      }
+    ]
+  }
+];
+
+module.exports = baseConfig;

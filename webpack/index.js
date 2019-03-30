@@ -14,8 +14,8 @@ class AngelConfig {
     this.setServerConfig();
   }
   setServerConfig() {
-    this.port = this.config.listen.port;
-
+    this.port = this.config.dev_server.port;
+    this.host = this.config.dev_server.host;
     this.app.keys = this.config.keys ? this.config.keys : this.app.keys;
   }
 }
@@ -43,12 +43,12 @@ class AngeServer extends AngelConfig {
     );
 
     this.app.listen(this.port, () => {
-      console.log(`当前服务器已启动`, `http://127.0.0.1:${this.port}`);
+      console.log(`当前服务器已启动`, `http://${this.host}:${this.port}`);
     });
   }
 }
 
 var server = new AngeServer({
   configUrl: path.join(process.cwd(), 'webpack/config.js'),
-  webpackUrl: path.join(process.cwd(), 'webpack/webpack.dev.js')
+  webpackUrl: path.join(process.cwd(), 'webpack/webpack.config.js')
 });
