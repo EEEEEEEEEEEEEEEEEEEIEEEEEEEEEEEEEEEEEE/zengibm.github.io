@@ -38,7 +38,7 @@ exports.dev_plugins = [
 
 exports.prod_plugins = [
   new CleanWebpackPlugin(['dist', 'docs'], {
-    root: path.resolve(process.cwd()),
+    root: path.join(__dirname, '../'),
     verbose: true
   }),
   //   new webpack.optimize.CommonsChunkPlugin({

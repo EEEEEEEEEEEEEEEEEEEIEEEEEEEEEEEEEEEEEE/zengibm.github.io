@@ -12,7 +12,7 @@ const base_css = {
       loader: 'postcss-loader',
       options: {
         config: {
-          path: path.join(process.cwd(), 'webpack/tools/postcss.config.js')
+          path: path.join(__dirname, './tools/postcss.config.js')
         }
       }
     },
@@ -21,7 +21,7 @@ const base_css = {
       loader: 'sass-resources-loader',
       options: {
         // 你也可以从一个文件读取，例如 `variables.scss`
-        resources: path.join(process.cwd(), 'src/common/scss/variable.scss')
+        resources: path.join(__dirname, '../src/common/scss/variable.scss')
       }
     }
   ],
@@ -51,7 +51,7 @@ const base_css = {
         loader: 'postcss-loader',
         options: {
           config: {
-            path: path.join(process.cwd(), 'webpack/tools/postcss.config.js')
+            path: path.join(__dirname, './tools/postcss.config.js')
           }
         }
       },
@@ -59,14 +59,14 @@ const base_css = {
         loader: 'sass-loader',
         options: {
           // 你也可以从一个文件读取，例如 `variables.scss`
-          // data: path.join(process.cwd(), 'src/index.scss')
+          // data: path.join(__dirname, '../src/index.scss')
         }
       },
       {
         loader: 'sass-resources-loader',
         options: {
           // 你也可以从一个文件读取，例如 `variables.scss`
-          resources: path.join(process.cwd(), 'src/common/scss/variable.scss')
+          resources: path.join(__dirname, '../src/common/scss/variable.scss')
         }
       }
     ]
