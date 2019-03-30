@@ -21,7 +21,7 @@ export default class App extends Component {
       <div>
         <h1>hello, wolrd</h1>
         <p>
-          范媛是傻逼!
+          范媛是傻逼!想搭噶及地傻气
         </p>
         {/* <Switch>
           <Route path="/login" component={Login} />
