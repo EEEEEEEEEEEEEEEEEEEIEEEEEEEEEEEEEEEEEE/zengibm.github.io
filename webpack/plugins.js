@@ -37,7 +37,7 @@ exports.dev_plugins = [
 ];
 
 exports.prod_plugins = [
-  new CleanWebpackPlugin(['dist'], {
+  new CleanWebpackPlugin(['dist', 'docs'], {
     root: path.resolve(process.cwd()),
     verbose: true
   }),

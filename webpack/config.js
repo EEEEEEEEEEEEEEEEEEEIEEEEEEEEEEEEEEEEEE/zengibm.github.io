@@ -11,7 +11,7 @@ module.exports = {
       }
     },
     output: {
-      path: path.resolve(__dirname, '../dist'),
+      path: path.resolve(__dirname, '../docs'),
       // chunkFilename: '[name].[chunkhash:6].chunk.js',
       //     sourceMapFilename: '[name].bundle.map',
       publicPath: '/', //如果react-router 在多级路由下找不到css 或者js 资源的话配置这个可以解决
