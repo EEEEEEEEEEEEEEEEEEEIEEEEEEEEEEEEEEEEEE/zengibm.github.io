@@ -1,5 +1,3 @@
-# zengibm.github.io
-圈圈的代码屋
 # react 路由权限验证
 [单页面权限验证参考](https://blog.rsuitejs.com/2017/07/22/react-permission/)
 

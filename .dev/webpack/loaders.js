@@ -65,9 +65,7 @@ const base_css = {
         loader: 'sass-resources-loader',
         options: {
           // 你也可以从一个文件读取，例如 `variables.scss`
-          resources: path.join(__dirname, '../src/common/scss/variable.scss'),
-          resources: path.join(__dirname, '../src/common/scss/mixin.scss'),
-          resources: path.join(__dirname, '../src/common/scss/functions.scss')
+          resources: [path.join(__dirname, '../src/common/scss/variable.scss'),path.join(__dirname, '../src/common/scss/mixin.scss'),path.join(__dirname, '../src/common/scss/functions.scss')],
         }
       }
     ]
