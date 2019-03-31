@@ -9,6 +9,8 @@ import "./config";
 import ruducers from "./reducer/reducers";
 import App from "App.js";
 
+import 'lib-flexible'
+
 function devToolsExtension(env) {
   if (env === "development") {
     return compose(
