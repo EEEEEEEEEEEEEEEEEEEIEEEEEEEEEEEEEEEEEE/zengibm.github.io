@@ -5,7 +5,6 @@ import Login from './pages/Login/Login';
 import Layout from './pages/Layout/Layout';
 import NoFound from './pages/NoFound/NoFound';
 
-import love from './common/files/videos/love.mp4'
 const whiteList = ['/login', '/register'];
 
 @withRouter
@@ -20,11 +19,11 @@ export default class App extends Component {
         : '/login';
     return (
       <div>
-        <h1>hello, wolrd</h1>
-        <p>范媛是傻逼!想搭噶及地傻气111</p>
+        <h1>hello, 33333wolrd</h1>
+        <p>范媛是傻逼!333</p>
         <img src={require('./common/img/bg.jpg')} />
-        <video controls>
-          <source src={love} autoplay type="video/mp4" />
+        <video controls autoPlay>
+          <source src={require('./common/files/videos/love.mp4')}  type="video/mp4" />
         </video>
         <p>打包没有图片怎么办</p>
         {/* <Switch>

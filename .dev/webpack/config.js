@@ -31,6 +31,8 @@ module.exports = {
     contentBase: path.resolve(__dirname, '../public'),
     compress: true, //gzip 亚索
     inline: true, //实时刷新
+    hot: true,
+    open: true,
     stats: {
       assets: true,
       children: false,

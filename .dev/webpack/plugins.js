@@ -21,17 +21,17 @@ exports.dev_plugins = [
     alwaysWriteToDisk: false,
     inject: true,
     hash: false
+  }),
+  new webpack.LoaderOptionsPlugin({
+    debug: true,
+    minimize: false,
+    options: {
+      // eslint: {
+      //   configFile: path.join(__dirname, '../tools/.eslintrc')
+      // },
+      context: '/'
+    }
   })
-  //   new webpack.LoaderOptionsPlugin({
-  //     debug: true,
-  //     minimize: false,
-  //     options: {
-  //       eslint: {
-  //         configFile: path.join(__dirname, '../tools/.eslintrc')
-  //       },
-  //       context: '/'
-  //     }
-  //   }),
   // new webpack.DllReferencePlugin({
   //     manifest: path.join(__dirname, '../../public/dll', 'manifest.json'),
   // }),
@@ -69,11 +69,7 @@ exports.prod_plugins = [
   //       context: '/'
   //     }
   //   }),
-  //   new ExtractTextPlugin({
-  //     filename: '[name].style.[contenthash].css',
-  //     disable: false,
-  //     allChunks: true
-  //   }),
+
   new ExtractTextPlugin({
     filename: 'css/bundle.css',
     disable: false,

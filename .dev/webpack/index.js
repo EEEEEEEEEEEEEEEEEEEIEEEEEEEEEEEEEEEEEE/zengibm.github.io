@@ -38,7 +38,7 @@ class AngeServer extends AngelConfig {
     this.app.use(
       hotMiddleware(this.compiler, {
         noInfo: true,
-        reload: true
+        reload: true,
       })
     );
 
