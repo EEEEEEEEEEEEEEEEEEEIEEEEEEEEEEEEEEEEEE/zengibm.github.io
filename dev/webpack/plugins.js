@@ -37,10 +37,13 @@ exports.dev_plugins = [
 ];
 
 exports.prod_plugins = [
-  new CleanWebpackPlugin(['dist', 'docs'], {
-    root: path.join(__dirname, '../'),
-    verbose: true
-  }),
+  new CleanWebpackPlugin(
+    ['css', 'js', 'files', 'index.html', 'dev/dist', 'dev/docs'],
+    {
+      root: path.join(process.cwd()),
+      verbose: true
+    }
+  ),
   //   new webpack.optimize.CommonsChunkPlugin({
   //     names: ['vendor', 'manifest'],
   //     filename: 'vendor.bundle.js',
@@ -64,13 +67,13 @@ exports.prod_plugins = [
   //     allChunks: true
   //   }),
   new ExtractTextPlugin({
-    filename: 'bundle.css',
+    filename: 'css/bundle.css',
     disable: false,
     allChunks: true
   }),
   new webpack.optimize.AggressiveMergingPlugin(),
   new webpack.HashedModuleIdsPlugin(),
-//   new WebpackChunkHash(),
+  //   new WebpackChunkHash(),
   new HtmlWebpackPlugin({
     /**
      * https://webpack.docschina.org/plugins/html-webpack-plugin/

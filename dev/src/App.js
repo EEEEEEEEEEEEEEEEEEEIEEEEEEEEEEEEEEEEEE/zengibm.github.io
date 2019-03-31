@@ -21,8 +21,9 @@ export default class App extends Component {
       <div>
         <h1>hello, wolrd</h1>
         <p>
-          范媛是傻逼!想搭噶及地傻气
+          范媛是傻逼!想搭噶及地傻气111
         </p>
+        <img src={require('./common/img/girl.jpeg')} />
         {/* <Switch>
           <Route path="/login" component={Login} />
           <Redirect from="/" exact to={loginRedirectUrl} />

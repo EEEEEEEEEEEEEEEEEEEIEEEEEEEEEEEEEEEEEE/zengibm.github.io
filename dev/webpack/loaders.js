@@ -84,7 +84,7 @@ const baseConfig = [
     use: __DEV__ ? base_css.dev : base_css.prod
   },
   {
-    test: /\.(png|jpg)$/,
+    test: /\.(png|jpg|jpeg)$/,
     loader: 'url-loader',
     options: {
       name: '[name].[ext]',
