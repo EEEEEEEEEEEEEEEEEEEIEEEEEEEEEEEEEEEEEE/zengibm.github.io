@@ -19,8 +19,8 @@ export default class App extends Component {
         : '/login';
     return (
       <div>
-        <h1>hello, 33333wolrd</h1>
-        <p>范媛是傻逼!333</p>
+        <h1>hello, 33333wolrd333</h1>
+        <p>范媛是傻111逼!333</p>
         <img src={require('./common/img/bg.jpg')} />
         <video controls autoPlay>
           <source src={require('./common/files/videos/love.mp4')}  type="video/mp4" />

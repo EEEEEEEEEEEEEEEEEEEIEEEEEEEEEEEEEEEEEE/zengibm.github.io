@@ -5,7 +5,7 @@ const path = require('path'),
 module.exports = {
   apps: {
     entry: {
-      dev: [path.resolve(__dirname, '../src/index.js')],
+      dev: ['babel-polyfill', path.resolve(__dirname, '../src/index.js'), 'webpack-hot-middleware/client?noInfo=true&reload=true'],// 'webpack-hot-middleware/client?noInfo=true&reload=true'  刷新页面的关键
       prod: {
         index: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')]
       }
