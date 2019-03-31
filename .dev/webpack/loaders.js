@@ -86,7 +86,7 @@ const baseConfig = [
     test: /\.(png|jpg|jpeg)$/,
     loader: 'url-loader',
     options: {
-      name: '[name].[ext]',
+      name: 'images/[name].[ext]',
       limit: 1024 * 10,
       outputPath: 'static',
       fallback: 'file-loader'
