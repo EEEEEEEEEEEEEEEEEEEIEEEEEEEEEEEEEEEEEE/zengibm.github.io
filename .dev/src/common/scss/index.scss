@@ -1,5 +1,10 @@
 @import './reset';
 @import './style.scss';
+a {
+  text-decoration: none;
+}
 body {
   background: $main-bg;
+  padding: 0 32px;
 }
+

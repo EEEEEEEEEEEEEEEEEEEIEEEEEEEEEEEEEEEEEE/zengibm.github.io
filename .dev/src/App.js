@@ -17,7 +17,6 @@ export default class App extends Component {
      */
     return (
       <div className="app">
-        <h1>h333ello, wo333lrd11</h1>
         <Route path="/index/home" component={Home} />
         <Redirect from="/" exact to="/index/home" />
         {/* <video controls autoPlay>
