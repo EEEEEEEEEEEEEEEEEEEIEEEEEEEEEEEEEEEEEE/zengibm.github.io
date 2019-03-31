@@ -49,6 +49,6 @@ class AngeServer extends AngelConfig {
 }
 
 var server = new AngeServer({
-  configUrl: path.join(process.cwd(), 'dev/webpack/config.js'),
-  webpackUrl: path.join(process.cwd(), 'dev/webpack/webpack.config.js')
+  configUrl: path.join(process.cwd(), '.dev/webpack/config.js'),
+  webpackUrl: path.join(process.cwd(), '.dev/webpack/webpack.config.js')
 });

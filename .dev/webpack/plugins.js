@@ -38,7 +38,7 @@ exports.dev_plugins = [
 
 exports.prod_plugins = [
   new CleanWebpackPlugin(
-    ['css', 'js', 'files', 'index.html', 'dev/dist', 'dev/docs'],
+    ['css', 'js', 'files', 'index.html'],
     {
       root: path.join(process.cwd()),
       verbose: true

@@ -12,23 +12,23 @@
   },
   "betterScripts": {
     "dev": {
-      "command": "node ./dev/webpack/index.js",
+      "command": "node ./.dev/webpack/index.js",
       "env": {
         "NODE_ENV": "development"
       }
     },
     "build": {
-      "command": "webpack  --config ./dev/webpack/webpack.config.js",
+      "command": "webpack  --config ./.dev/webpack/webpack.config.js",
       "env": {
         "NODE_ENV": "production"
       }
     }
   },
   "eslintConfig": {
-    "extends": "./dev/webpack/tools/.eslintrc"
+    "extends": "./.dev/webpack/tools/.eslintrc"
   },
   "babel": {
-    "extends": "./dev/webpack/tools/.babelrc"
+    "extends": "./.dev/webpack/tools/.babelrc"
   },
   "dependencies": {
     "antd": "^3.10.7",
