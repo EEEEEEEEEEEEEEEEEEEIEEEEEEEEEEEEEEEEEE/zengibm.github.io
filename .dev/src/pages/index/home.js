@@ -9,7 +9,7 @@ export default class home extends Component {
   };
   constructor() {
     super();
-    this.state = { items: ['hello', 'world', 'click', 'me'] };
+    this.state = { items: ['hello', 'world', 'click', 'me'], show_tabs: true };
     this.handleAdd = this.handleAdd.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
   }
@@ -36,6 +36,26 @@ export default class home extends Component {
         </div>
       );
     });
+    let el = this.state.show_tabs ? (
+      <ul className="list_link" >
+        <a>
+          <i
+            onClick={(e) => {
+              console.log(111)
+              const new_tabs = !this.state.show_tabs;
+              this.setState({
+                show_tabs : new_tabs
+              })
+            }}
+          />
+        </a>
+        <li>首页</li>
+        <li>归档</li>
+        <li>搜索</li>
+        <li>标签</li>
+        <li>其他文章</li>
+      </ul>
+    ) : null;
     return (
       <div className="home">
         <header>
@@ -45,18 +65,15 @@ export default class home extends Component {
               <h3>圈圈的修真世界</h3>
             </div>
           </Link>
-          <div className="nav">
-            <ul className="list_link">
-              <a>
-                <i />
-              </a>
-              <li>首页</li>
-              <li>归档</li>
-              <li>搜索</li>
-              <li>标签</li>
-              <li>其他文章</li>
-            </ul>
-          </div>
+          <ReactCSSTransitionGroup
+            component="div"
+            className="nav"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={1500}
+            transitionName="fale"
+          >
+            {el}
+          </ReactCSSTransitionGroup>
         </header>
         <button onClick={this.handleAdd}>Add Item</button>
         <ReactCSSTransitionGroup

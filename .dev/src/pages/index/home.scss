@@ -63,4 +63,24 @@
     opacity: 0.01;
     transition: opacity 300ms ease-in;
   }
+
+
+  .fale-enter{
+    opacity: .01;
+  }
+
+  .fale-enter.fale-enter-active{
+    opacity: 1;
+    transition: all 500ms ease-in-out;
+  }
+
+  .fale-leave {
+      opacity: 1;
+  }
+  .fale-leave.fale-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
 }
+
+  
