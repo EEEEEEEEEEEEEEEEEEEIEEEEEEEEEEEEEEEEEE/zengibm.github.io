@@ -94,20 +94,42 @@ const baseConfig = [
     }
   },
   {
-    test: /\.(eot|woff|svg|ttf|woff2|gif|appcache|mp3)(\?|$)/,
+    test: /\.(eot|woff|svg|ttf|woff2|appcache)(\?|$)/,
     exclude: /^node_modules$/,
     use: [
       {
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]',
+          name: 'files/fonts/[name].[ext]',
           outputPath: 'files',
           publicPath: '/',
-          emitFile: true //默认情况下会生成文件，可以通过将此项设置为 false 来禁用（例如使用了服务端的 packages）。
+          emitFile: false //默认情况下会生成文件，可以通过将此项设置为 false 来禁用（例如使用了服务端的 packages）。
           //useRelativePath: process.env.NODE_ENV === "production" //如果你希望为每个文件生成一个相对 URL 的 context 时，应该将 useRelativePath 设置为 true。
         }
       }
     ]
+  },
+  {
+    test: /\.(gif|mp4|mov|avi)/i,
+    use: {
+      loader: 'file-loader',
+      options : {
+        name: 'files/videos/[name].[ext]',
+        outputPath: 'videos',
+        publicPath: '/',
+        emitFile: false
+      }
+    }
+  },
+  {
+    test: /\.(ogg|mp3|wav|mpe?g)$/i,
+    use: {
+      loader: 'file-loader',
+      options : {
+        name: '[name].[ext]',
+        emitFile: false
+      }
+    }
   }
 ];
 

@@ -5,6 +5,7 @@ const path = require('path'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   CleanWebpackPlugin = require('clean-webpack-plugin'),
+  CopyPlugin = require('copy-webpack-plugin'),
   webpack = require('webpack'),
   __DEV__ = (process.env.NODE_ENV || 'development') === 'development';
 
@@ -38,12 +39,19 @@ exports.dev_plugins = [
 
 exports.prod_plugins = [
   new CleanWebpackPlugin(
-    ['css', 'js', 'files', 'index.html'],
+    ['css', 'js', 'files', 'images', 'videos', 'index.html'],
     {
       root: path.join(process.cwd()),
       verbose: true
     }
   ),
+  new CopyPlugin([
+    {
+      from: path.join(__dirname, '../src/common/files'),
+      to: path.join(process.cwd(), './files'),
+      toType: 'dir'
+    }
+  ]),
   //   new webpack.optimize.CommonsChunkPlugin({
   //     names: ['vendor', 'manifest'],
   //     filename: 'vendor.bundle.js',
