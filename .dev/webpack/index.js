@@ -1,8 +1,9 @@
 const path = require('path');
 const Koa = require('koa');
-const devMiddleware = require('koa-webpack-dev-middleware');
-const hotMiddleware = require('koa-webpack-hot-middleware');
+// const devMiddleware = require('koa-webpack-dev-middleware');
+// const hotMiddleware = require('koa-webpack-hot-middleware');
 const webpack = require('webpack');
+const koaWebpack  = require('koa-webpack')
 const app = new Koa();
 
 class AngelConfig {
@@ -26,21 +27,12 @@ class AngeServer extends AngelConfig {
     this.startService();
   }
 
-  startService() {
-    this.app.use(
-      devMiddleware(this.compiler, {
-        noInfo: true,
-        reload: true,
-        publicPath: this.webpackConfig.output.publicPath
-      })
-    );
+  async startService() {
 
-    this.app.use(
-      hotMiddleware(this.compiler, {
-        noInfo: true,
-        reload: true,
-      })
-    );
+    const middleware = await koaWebpack({ compiler: this.compiler });
+
+    this.app.use(middleware);
+ 
 
     this.app.listen(this.port, () => {
       console.log(`当前服务器已启动`, `http://${this.host}:${this.port}`);

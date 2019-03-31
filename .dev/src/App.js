@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter, Link } from 'react-router-dom';
 import AuthorizedRoute from './AuthorizedRoute';
 import Login from './pages/Login/Login';
 import Layout from './pages/Layout/Layout';
 import NoFound from './pages/NoFound/NoFound';
+
+import Home from './pages/index/home';
 
 const whiteList = ['/login', '/register'];
 
@@ -13,19 +15,17 @@ export default class App extends Component {
     /**
      * 判断当前路径,在/目录的话直接跳转/login, 在白名单whiteList数组内的话不做任何改变
      */
-    const loginRedirectUrl =
-      whiteList.indexOf(this.props.location.pathname) > -1
-        ? this.props.location.pathname
-        : '/login';
     return (
-      <div>
-        <h1>hello, 33333wolrd333</h1>
-        <p>范媛是傻111逼!333</p>
-        <img src={require('./common/img/bg.jpg')} />
-        <video controls autoPlay>
-          <source src={require('./common/files/videos/love.mp4')}  type="video/mp4" />
-        </video>
-        <p>打包没有图片怎么办</p>
+      <div className="app">
+        <h1>h333ello, wo333lrd11</h1>
+        {/* <Route path="/index/home" component={Home} />
+        <Redirect from="/" exact to="/index/home" /> */}
+        {/* <video controls autoPlay>
+          <source
+            src={require('./common/files/videos/love.mp4')}
+            type="video/mp4"
+          />
+        </video> */}
         {/* <Switch>
           <Route path="/login" component={Login} />
           <Redirect from="/" exact to={loginRedirectUrl} />

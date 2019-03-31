@@ -1,14 +1,5 @@
+@import './reset';
 @import './style.scss';
-* {
-  padding: 0;
-  margin: 0;
-}
 body {
-  h1 {
-    width: 750px;
-    color: $color;
-    box-sizing: border-box;
-    background: linear-gradient(to right, pink, blue);
-  }
-  background: url('../img/bg.jpg');
+  background: $main_bg;
 }

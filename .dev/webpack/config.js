@@ -5,7 +5,7 @@ const path = require('path'),
 module.exports = {
   apps: {
     entry: {
-      dev: ['babel-polyfill', path.resolve(__dirname, '../src/index.js'), 'webpack-hot-middleware/client?noInfo=true&reload=true'],// 'webpack-hot-middleware/client?noInfo=true&reload=true'  刷新页面的关键
+      dev: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')],// 'webpack-hot-middleware/client?noInfo=true&reload=true'  如果没有使用koa-webpack的话 这个是刷新页面的关键 
       prod: {
         index: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')]
       }

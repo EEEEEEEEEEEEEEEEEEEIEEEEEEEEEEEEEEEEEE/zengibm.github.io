@@ -10,7 +10,8 @@ const path = require('path'),
   __DEV__ = (process.env.NODE_ENV || 'development') === 'development';
 
 exports.dev_plugins = [
-  new webpack.HotModuleReplacementPlugin(),
+  new webpack.optimize.OccurrenceOrderPlugin(),
+  // new webpack.HotModuleReplacementPlugin(),
   new webpack.NamedModulesPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
   new HtmlWebpackPlugin({
