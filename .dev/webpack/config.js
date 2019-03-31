@@ -15,7 +15,7 @@ module.exports = {
       // chunkFilename: '[name].[chunkhash:6].chunk.js',
       //     sourceMapFilename: '[name].bundle.map',
       publicPath: '/', //如果react-router 在多级路由下找不到css 或者js 资源的话配置这个可以解决
-      filename: 'js/bundle.js'
+      filename: 'static/js/bundle.js'
     },
     devtool: {
       dev: 'eval-cheap-module-source-map',

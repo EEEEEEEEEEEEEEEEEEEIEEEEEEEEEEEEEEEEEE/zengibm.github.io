@@ -44,7 +44,6 @@ const base_css = {
           //   return "whatever_random_class_name";
           // }
           importLoaders: 1,
-          publicPath: '/'
         }
       },
       {
@@ -89,7 +88,7 @@ const baseConfig = [
     options: {
       name: '[name].[ext]',
       limit: 1024 * 10,
-      outputPath: 'images',
+      outputPath: 'static',
       fallback: 'file-loader'
     }
   },
@@ -100,9 +99,8 @@ const baseConfig = [
       {
         loader: 'file-loader',
         options: {
-          name: 'files/fonts/[name].[ext]',
-          outputPath: 'files',
-          publicPath: '/',
+          name: 'fonts/[name].[ext]',
+          outputPath: 'static',
           emitFile: false //默认情况下会生成文件，可以通过将此项设置为 false 来禁用（例如使用了服务端的 packages）。
           //useRelativePath: process.env.NODE_ENV === "production" //如果你希望为每个文件生成一个相对 URL 的 context 时，应该将 useRelativePath 设置为 true。
         }
@@ -114,9 +112,8 @@ const baseConfig = [
     use: {
       loader: 'file-loader',
       options : {
-        name: 'files/videos/[name].[ext]',
-        outputPath: 'videos',
-        publicPath: '/',
+        name: 'videos/[name].[ext]',
+        outputPath: 'static',
         emitFile: false
       }
     }
@@ -126,7 +123,7 @@ const baseConfig = [
     use: {
       loader: 'file-loader',
       options : {
-        name: '[name].[ext]',
+        name: 'static/[name].[ext]',
         emitFile: false
       }
     }

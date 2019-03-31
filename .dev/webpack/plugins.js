@@ -39,7 +39,7 @@ exports.dev_plugins = [
 
 exports.prod_plugins = [
   new CleanWebpackPlugin(
-    ['css', 'js', 'files', 'images', 'videos', 'index.html'],
+    ['css', 'js', 'files', 'images', 'videos', 'static', 'index.html'],
     {
       root: path.join(process.cwd()),
       verbose: true
@@ -48,7 +48,7 @@ exports.prod_plugins = [
   new CopyPlugin([
     {
       from: path.join(__dirname, '../src/common/files'),
-      to: path.join(process.cwd(), './files'),
+      to: path.join(process.cwd(), './static'),
       toType: 'dir'
     }
   ]),
@@ -71,7 +71,7 @@ exports.prod_plugins = [
   //   }),
 
   new ExtractTextPlugin({
-    filename: 'css/bundle.css',
+    filename: 'static/css/bundle.css',
     disable: false,
     allChunks: true
   }),
