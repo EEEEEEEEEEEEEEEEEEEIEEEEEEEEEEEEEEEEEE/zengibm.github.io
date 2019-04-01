@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link, Route } from 'react-router-dom';
+import { Motion, spring } from 'react-motion';
 import PropTypes from 'prop-types';
 import './home.scss';
 export default class home extends Component {
@@ -9,80 +9,78 @@ export default class home extends Component {
   };
   constructor() {
     super();
-    this.state = { items: ['hello', 'world', 'click', 'me'], show_tabs: true };
-    this.handleAdd = this.handleAdd.bind(this);
-    this.handleRemove = this.handleRemove.bind(this);
+    this.state = { show_tabs: true, h: 0 };
+    this.toggle_tabs = this.toggle_tabs.bind(this);
   }
-  handleRemove() {
-    const [key] = arguments;
-    let newItems = this.state.items.slice();
-    newItems.splice(key, 1);
-    this.setState({ items: newItems });
+  toggle_tabs() {
+    let target_h = 0;
+    if (this.state.h === 0) {
+      target_h = 320;
+    } else {
+      target_h = 0;
+    }
+
+    this.setState({
+      h: target_h
+    });
   }
-  handleAdd() {
-    let newItems = this.state.items.concat([prompt('enter some text')]);
-    this.setState({ items: newItems });
+  handle_resize() {
+    setTimeout(() => {
+      window.onresize = e => {
+        if (window.screen.width > 376) {
+          this.setState({
+            h: 60
+          });
+        } else {
+          this.setState({
+            h: 0
+          });
+        }
+      };
+    }, 20);
+  }
+  componentDidMount() {
+    this.handle_resize();
   }
   render() {
-    let items = this.state.items.map((v, k) => {
-      return (
-        <div
-          key={v}
-          onClick={e => {
-            this.handleRemove(k);
-          }}
-        >
-          {v}
-        </div>
-      );
-    });
-    let el = this.state.show_tabs ? (
-      <ul className="list_link" >
-        <a>
-          <i
-            onClick={(e) => {
-              console.log(111)
-              const new_tabs = !this.state.show_tabs;
-              this.setState({
-                show_tabs : new_tabs
-              })
-            }}
-          />
-        </a>
-        <li>首页</li>
-        <li>归档</li>
-        <li>搜索</li>
-        <li>标签</li>
-        <li>其他文章</li>
-      </ul>
-    ) : null;
     return (
       <div className="home">
         <header>
-          <Link to="/index/home">
-            <div className="avatar" />
-            <div className="title">
-              <h3>圈圈的修真世界</h3>
-            </div>
-          </Link>
-          <ReactCSSTransitionGroup
-            component="div"
-            className="nav"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={1500}
-            transitionName="fale"
-          >
-            {el}
-          </ReactCSSTransitionGroup>
+          <div to="/index/home" className="top">
+            <Link to="/index/home">
+              <div className="avatar" />
+              <div className="title">
+                <h3>圈圈的修真世界</h3>
+              </div>
+            </Link>
+            <i onClick={this.toggle_tabs} />
+          </div>
+          <Motion style={{ x: spring(this.state.h) }}>
+            {interpolatingStyle => {
+              console.log(interpolatingStyle);
+              return (
+                <ul
+                  className="list_link"
+                  style={{ height: interpolatingStyle.x / 2 }}
+                >
+                  <li>首页</li>
+                  <li>归档</li>
+                  <li>搜索</li>
+                  <li>标签</li>
+                  <li>其他文章</li>
+                </ul>
+              );
+            }}
+          </Motion>
         </header>
-        <button onClick={this.handleAdd}>Add Item</button>
-        <ReactCSSTransitionGroup
-          transitionName="example"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
-        >
-          {items}
-        </ReactCSSTransitionGroup>
+        {/* <Motion style={{ x: spring(this.state.h) }}>
+          {interpolatingStyle => {
+            console.log(interpolatingStyle);
+            return (
+              <div style={{ height: interpolatingStyle.x }} className="box" />
+            );
+          }}
+        </Motion> */}
       </div>
     );
   }
