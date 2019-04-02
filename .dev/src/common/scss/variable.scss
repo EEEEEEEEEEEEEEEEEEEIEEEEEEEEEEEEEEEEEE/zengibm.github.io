@@ -1,14 +1,13 @@
 $vw_design: 750;
 $vw_fontsize: 75;
 
-$color1: #b0b0b6;
+$color1: #6699cc;
 
-$color2: #9878ff;
+$color2: #006699;
 
+$color3: #9878ff;
 
-$main-bg : #000;
-
-
+$main-bg: #000;
 
 @function vw($px) {
   @return ($px * 2 / 750) * 100vw;
@@ -19,8 +18,8 @@ $main-bg : #000;
 }
 
 @mixin bg-image($url) {
-  background-image: url($url+'@2x.png');
+  background-image: url($url+"@2x.png");
   @media (min-device-pixel-ratio: 3) {
-    background-image: url($url+'@3x.png');
+    background-image: url($url+"@3x.png");
   }
 }

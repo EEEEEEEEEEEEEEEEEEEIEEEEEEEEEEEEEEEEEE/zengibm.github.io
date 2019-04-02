@@ -1,0 +1,22 @@
+.navlist {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  ul {
+    display: flex;
+    background: $color1;
+    li {
+      flex: 1;
+      height: 88px;
+      line-height: 1em;
+      padding: calc((88px - 1em) / 2) 0;
+      box-sizing: border-box;
+      text-align: center;
+      color: #000;
+      &.active {
+        color: $color2;
+      }
+    }
+  }
+}

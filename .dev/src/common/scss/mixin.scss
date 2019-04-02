@@ -1,0 +1,4 @@
+@mixin vertical_align() {
+  line-height: 1em;
+  padding: calc((attr(height) - 1em) / 2) 0;
+}
