@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import "./common/scss/index.scss";
 import "./config";
 import ruducers from "./reducer/reducers";
 import App from "App.js";
 
-import 'lib-flexible'
+import "lib-flexible";
 
 function devToolsExtension(env) {
   if (env === "development") {
