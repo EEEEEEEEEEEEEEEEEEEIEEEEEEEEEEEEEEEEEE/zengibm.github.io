@@ -9,6 +9,8 @@ $color3: #9878ff;
 
 $main-bg: #000;
 
+$b_line: #494949;
+
 @function vw($px) {
   @return ($px * 2 / 750) * 100vw;
 }

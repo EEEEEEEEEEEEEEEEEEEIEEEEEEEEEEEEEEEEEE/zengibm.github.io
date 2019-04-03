@@ -2,6 +2,109 @@
   .top {
     width: 100%;
     height: 320px;
-    background: pink;
+    .avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      padding-top: 66px;
+      img {
+        border-radius: 50%;
+        width: 100%;
+        animation: avatar 500ms ease 20ms infinite;
+      }
+    }
+  }
+  h2 {
+    color: $color3;
+    text-align: center;
+    font-size: 36px;
+    margin-top: 30px;
+  }
+  .route_link {
+    display: flex;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    a {
+      flex: 1;
+      height: 50px;
+      font-size: 32px;
+      margin-top: 30px;
+      background: no-repeat center / 50px;
+      &:nth-child(1) {
+        background-image: url("../../../common/img/index/github-fill.png");
+      }
+      &:nth-child(2) {
+        background-image: url("../../../common/img/index/email.png");
+      }
+      &:nth-child(3) {
+        background-image: url("../../../common/img/index/qq.png");
+      }
+    }
+  }
+  .container {
+    margin-top: 30px;
+    padding: 30px 0;
+    box-sizing: border-box;
+    height: 780px;
+    overflow-y: auto;
+
+    .article_list {
+      color: #fff;
+      width: 80%;
+      margin: 0 auto;
+      ul {
+        .list_date {
+          text-align: left;
+          margin: 30px 0;
+        }
+        li {
+          padding: 0 30px 30px;
+          box-sizing: border-box;
+          background: no-repeat left center / 2px 100%;
+          background-image: linear-gradient(to right, $b_line, $b_line);
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          &:last-child {
+            padding-bottom: 0;
+          }
+          h3 {
+            font-size: 36px;
+            transform: translateY(-8px);
+          }
+          p {
+            font-size: 28px;
+            text-align: left;
+            margin: 10px 0;
+          }
+          span {
+            font-size: 24px;
+            text-align: right;
+          }
+          &::before {
+            content: "";
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: $color3;
+            position: absolute;
+            left: -10px;
+            top: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes avatar {
+  0% {
+    box-shadow: 3px 3px 0px 0px rgba($color: #f3a, $alpha: 1);
+  }
+  100% {
+    box-shadow: 0 0 100px 10px rgba($color: gray, $alpha: 1);
   }
 }
