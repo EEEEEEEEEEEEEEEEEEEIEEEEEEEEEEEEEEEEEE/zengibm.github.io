@@ -1,30 +1,30 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn build
+  /usr/local/bin/node /usr/local/bin/yarn add plugin-syntax-dynamic-import -D
 
 PATH: 
-  /home/quan/anaconda3/bin:/home/quan/anaconda3/bin:/opt/swift-4.2.1-RELEASE-ubuntu18.04/usr/bin:/home/quan/.jenv/shims:/home/quan/.jenv/bin/:/home/quan/anaconda3/bin:/home/quan/anaconda3/bin:/opt/swift-4.2.1-RELEASE-ubuntu18.04/usr/bin:/home/quan/.jenv/shims:/home/quan/.jenv/bin/:/home/quan/.local/bin:/home/quan/bin:/opt/gradle/gradle-5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/quan/Android/Sdk/tools:/home/quan/Android/Sdk/tools/bin:/home/quan/Android/Sdk/platform-tools:/home/quan/Android/Sdk/emulator:/home/quan/Android/Sdk/tools:/home/quan/Android/Sdk/tools/bin:/home/quan/Android/Sdk/platform-tools:/home/quan/Android/Sdk/emulator
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 
 Yarn version: 
-  1.12.3
+  1.13.0
 
 Node version: 
-  11.11.0
+  11.10.1
 
 Platform: 
   linux x64
 
 Trace: 
-  TypeError: Cannot convert object to primitive value
-      at Array.join (native)
-      at ShellString.[format] (/usr/local/lib/node_modules/yarn/lib/cli.js:123962:80)
-      at ShellString.toString (/usr/local/lib/node_modules/yarn/lib/cli.js:123958:30)
-      at sh (/usr/local/lib/node_modules/yarn/lib/cli.js:124051:55)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:61064:52
-      at Generator.next (<anonymous>)
-      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:304:30)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:322:14
-      at new Promise (<anonymous>)
-      at new F (/usr/local/lib/node_modules/yarn/lib/cli.js:5228:28)
+  Error: https://registry.yarnpkg.com/plugin-syntax-dynamic-import: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66255:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:129397:22)
+      at Request.emit (events.js:197:13)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:130369:10)
+      at Request.emit (events.js:197:13)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:130291:12)
+      at Object.onceWrapper (events.js:285:13)
+      at IncomingMessage.emit (events.js:202:15)
+      at endReadableNT (_stream_readable.js:1129:12)
+      at processTicksAndRejections (internal/process/next_tick.js:76:17)
 
 npm manifest: 
   {
@@ -35,20 +35,29 @@ npm manifest:
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
       "ser": "nodemon server/index.js",
-      "dev": "node webpack/index.js",
       "prod": "cd dist && http-server -p 3999",
+      "dev": "better-npm-run dev",
+      "build": "better-npm-run build"
+    },
+    "betterScripts": {
+      "dev": {
+        "command": "node ./.dev/webpack/index.js",
+        "env": {
+          "NODE_ENV": "development"
+        }
+      },
       "build": {
-        "command": "npx webpack  --config webpack/webpack.config.js",
+        "command": "webpack  --config ./.dev/webpack/webpack.config.js",
         "env": {
           "NODE_ENV": "production"
         }
       }
     },
     "eslintConfig": {
-      "extends": "./webpack/tools/.eslintrc"
+      "extends": "./.dev/webpack/tools/.eslintrc"
     },
     "babel": {
-      "extends": "./webpack/tools/.babelrc"
+      "extends": "./.dev/webpack/tools/.babelrc"
     },
     "dependencies": {
       "antd": "^3.10.7",
@@ -64,17 +73,19 @@ npm manifest:
       "koa-router": "^7.4.0",
       "koa-static": "^5.0.0",
       "koa-views": "^6.1.4",
-      "koa-webpack": "^5.2.1",
-      "koa-webpack-dev-middleware": "^2.0.2",
-      "koa-webpack-hot-middleware": "^1.0.3",
+      "koa-webpack": "^5.2.2",
+      "lib-flexible": "^0.3.2",
       "mongoose": "^5.3.1",
       "mysql2": "^1.6.1",
       "mz": "^2.7.0",
       "node-uuid": "^1.4.8",
+      "postcss-pxtorem": "^4.0.1",
       "prop-types": "^15.6.2",
       "qs": "^6.5.2",
       "react": "^16.8.4",
       "react-dom": "^16.8.4",
+      "react-loadable": "^5.5.0",
+      "react-motion": "^0.5.2",
       "react-redux": "^6.0.1",
       "react-router-dom": "^4.3.1",
       "redux": "^4.0.1",
@@ -103,6 +114,7 @@ npm manifest:
       "babel-preset-es2015": "^6.24.1",
       "babel-preset-react": "^6.24.1",
       "babel-preset-stage-0": "^6.24.1",
+      "better-npm-run": "^0.1.1",
       "clean-webpack-plugin": "^0.1.19",
       "copy-webpack-plugin": "^4.5.1",
       "css-loader": "^0.28.11",
@@ -1669,6 +1681,15 @@ Lockfile:
     dependencies:
       tweetnacl "^0.14.3"
   
+  better-npm-run@^0.1.1:
+    version "0.1.1"
+    resolved "https://registry.yarnpkg.com/better-npm-run/-/better-npm-run-0.1.1.tgz#6bb6008591de1b72554aa8b0cefa0da1572fd481"
+    integrity sha512-SBBYsUsb6bYcUMF9QUWy39GX5kzD4CoRBP11gx/k5jYkUr4Tr+irAokIeQX5FgfCRz0Q27rt8U0J4D2TlRgQFA==
+    dependencies:
+      commander "^2.9.0"
+      dotenv "^2.0.0"
+      object-assign "^4.0.1"
+  
   big.js@^3.1.3:
     version "3.2.0"
     resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.2.0.tgz#a5fc298b81b9e0dca2e458824784b65c52ba588e"
@@ -2294,7 +2315,7 @@ Lockfile:
     version "2.17.1"
     resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   
-  commander@^2.19.0:
+  commander@^2.19.0, commander@^2.9.0:
     version "2.19.0"
     resolved "https://registry.yarnpkg.com/commander/-/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
   
@@ -3125,6 +3146,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
     dependencies:
       is-obj "^1.0.0"
+  
+  dotenv@^2.0.0:
+    version "2.0.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-2.0.0.tgz#bd759c357aaa70365e01c96b7b0bec08a6e0d949"
+    integrity sha1-vXWcNXqqcDZeAclrewvsCKbg2Uk=
   
   dottie@^2.0.0:
     version "2.0.1"
@@ -4878,24 +4904,10 @@ Lockfile:
       mz "^2.4.0"
       pretty "^2.0.0"
   
-  koa-webpack-dev-middleware@^2.0.2:
-    version "2.0.2"
-    resolved "https://registry.yarnpkg.com/koa-webpack-dev-middleware/-/koa-webpack-dev-middleware-2.0.2.tgz#bab6207198beb6344a0688bf9bd15cfaafa89d91"
-    integrity sha1-urYgcZi+tjRKBoi/m9Fc+q+onZE=
-    dependencies:
-      webpack-dev-middleware "^1.10.0"
-  
-  koa-webpack-hot-middleware@^1.0.3:
-    version "1.0.3"
-    resolved "https://registry.yarnpkg.com/koa-webpack-hot-middleware/-/koa-webpack-hot-middleware-1.0.3.tgz#df6aafbf2d77153101e37e6a4ae70235b466f8c0"
-    integrity sha1-32qvvy13FTEB435qSucCNbRm+MA=
-    dependencies:
-      webpack-hot-middleware "2.x"
-  
-  koa-webpack@^5.2.1:
-    version "5.2.1"
-    resolved "https://registry.yarnpkg.com/koa-webpack/-/koa-webpack-5.2.1.tgz#2594acdb37c6a76874abf153b26f453083472138"
-    integrity sha512-Sh/UppbFmxpEXi/A5TfwR4aXdbZH0jzhBHBv7gc9FIw9q/tBN6R6p4q+c/RUYFbCjpyS2EKR26ODgJnjDeX9wg==
+  koa-webpack@^5.2.2:
+    version "5.2.2"
+    resolved "https://registry.yarnpkg.com/koa-webpack/-/koa-webpack-5.2.2.tgz#e2b958038eec728c20f52437366bdde05169050c"
+    integrity sha512-4DHir+7XcOLnhPg3UCRYzljqTh2ri5XcjV2+Cjo4BrsM/CxSlMZ7rj5KaGoWxmm5rYlyA8+L190diKgCXCAj7Q==
     dependencies:
       app-root-path "^2.0.1"
       chalk "^2.4.2"
@@ -4952,6 +4964,11 @@ Lockfile:
     dependencies:
       prelude-ls "~1.1.2"
       type-check "~0.3.2"
+  
+  lib-flexible@^0.3.2:
+    version "0.3.2"
+    resolved "https://registry.yarnpkg.com/lib-flexible/-/lib-flexible-0.3.2.tgz#06f5a74832314a2d35c12039bc9c3ca2daeaa426"
+    integrity sha1-BvWnSDIxSi01wSA5vJw8otrqpCY=
   
   linebreak@^0.3.0:
     version "0.3.0"
@@ -5355,11 +5372,6 @@ Lockfile:
   mime@1.4.1:
     version "1.4.1"
     resolved "https://registry.yarnpkg.com/mime/-/mime-1.4.1.tgz#121f9ebc49e3766f311a76e1fa1c8003c4b03aa6"
-  
-  mime@^1.5.0:
-    version "1.6.0"
-    resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
-    integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
   
   mime@^2.0.3, mime@^2.3.1:
     version "2.3.1"
@@ -6175,6 +6187,11 @@ Lockfile:
       safe-buffer "^5.0.1"
       sha.js "^2.4.8"
   
+  performance-now@^0.2.0:
+    version "0.2.0"
+    resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
+    integrity sha1-M+8wxcd9TqIcWlOGnZG1bY8lVeU=
+  
   performance-now@^2.1.0:
     version "2.1.0"
     resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -6821,6 +6838,14 @@ Lockfile:
       postcss "^6.0.1"
       postcss-selector-parser "^2.2.3"
   
+  postcss-pxtorem@^4.0.1:
+    version "4.0.1"
+    resolved "https://registry.yarnpkg.com/postcss-pxtorem/-/postcss-pxtorem-4.0.1.tgz#9c64d0efe4885473cc1cb0305c6ffc3ebb45b1cd"
+    integrity sha1-nGTQ7+SIVHPMHLAwXG/8PrtFsc0=
+    dependencies:
+      object-assign "^4.1.0"
+      postcss "^5.2.10"
+  
   postcss-reduce-idents@^2.2.2:
     version "2.4.0"
     resolved "http://registry.npmjs.org/postcss-reduce-idents/-/postcss-reduce-idents-2.4.0.tgz#c2c6d20cc958284f6abfbe63f7609bf409059ad3"
@@ -6963,7 +6988,7 @@ Lockfile:
       postcss "^5.0.4"
       uniqs "^2.0.0"
   
-  postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.16:
+  postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.10, postcss@^5.2.16:
     version "5.2.18"
     resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.18.tgz#badfa1497d46244f6390f58b319830d9107853c5"
     dependencies:
@@ -7164,7 +7189,7 @@ Lockfile:
     version "0.2.1"
     resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
   
-  querystring@0.2.0, querystring@^0.2.0:
+  querystring@0.2.0:
     version "0.2.0"
     resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
   
@@ -7180,7 +7205,7 @@ Lockfile:
       minimist "^1.1.3"
       through2 "^2.0.0"
   
-  raf@^3.4.0:
+  raf@^3.1.0, raf@^3.4.0:
     version "3.4.1"
     resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
     dependencies:
@@ -7621,6 +7646,22 @@ Lockfile:
   react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
     version "3.0.4"
     resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+  
+  react-loadable@^5.5.0:
+    version "5.5.0"
+    resolved "https://registry.yarnpkg.com/react-loadable/-/react-loadable-5.5.0.tgz#582251679d3da86c32aae2c8e689c59f1196d8c4"
+    integrity sha512-C8Aui0ZpMd4KokxRdVAm2bQtI03k2RMRNzOB+IipV3yxFTSVICv7WoUr5L9ALB5BmKO1iHgZtWM8EvYG83otdg==
+    dependencies:
+      prop-types "^15.5.0"
+  
+  react-motion@^0.5.2:
+    version "0.5.2"
+    resolved "https://registry.yarnpkg.com/react-motion/-/react-motion-0.5.2.tgz#0dd3a69e411316567927917c6626551ba0607316"
+    integrity sha512-9q3YAvHoUiWlP3cK0v+w1N5Z23HXMj4IF4YuvjvWegWqNPfLXsOBE/V7UvQGpXxHFKRQQcNcVQE31g9SB/6qgQ==
+    dependencies:
+      performance-now "^0.2.0"
+      prop-types "^15.5.8"
+      raf "^3.1.0"
   
   react-redux@^6.0.1:
     version "6.0.1"
@@ -8829,11 +8870,6 @@ Lockfile:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.0.3.tgz#f5df732453407b09191dae73e2a8cc73f381a826"
   
-  time-stamp@^2.0.0:
-    version "2.2.0"
-    resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-2.2.0.tgz#917e0a66905688790ec7bbbde04046259af83f57"
-    integrity sha512-zxke8goJQpBeEgD82CXABeMh0LSJcj7CXEd0OHOg45HgcofF7pxNwZm9+RknpxpDhwN4gFpySkApKfFYfRQnUA==
-  
   timers-browserify@^2.0.4:
     version "2.0.10"
     resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.10.tgz#1d28e3d2aadf1d5a5996c4e9f95601cd053480ae"
@@ -9246,17 +9282,6 @@ Lockfile:
       range-parser "^1.0.3"
       webpack-log "^2.0.0"
   
-  webpack-dev-middleware@^1.10.0:
-    version "1.12.2"
-    resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-1.12.2.tgz#f8fc1120ce3b4fc5680ceecb43d777966b21105e"
-    integrity sha512-FCrqPy1yy/sN6U/SaEZcHKRXGlqU0DUaEBL45jkUYoB8foVb6wCnbIJ1HKIx+qUFTW+3JpVcCJCxZ8VATL4e+A==
-    dependencies:
-      memory-fs "~0.4.1"
-      mime "^1.5.0"
-      path-is-absolute "^1.0.0"
-      range-parser "^1.0.3"
-      time-stamp "^2.0.0"
-  
   webpack-dev-middleware@^3.0.0:
     version "3.5.0"
     resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-3.5.0.tgz#fff0a07b0461314fb6ca82df3642c2423f768429"
@@ -9313,15 +9338,6 @@ Lockfile:
       uuid "^3.1.0"
       webpack-log "^1.1.1"
       ws "^4.0.0"
-  
-  webpack-hot-middleware@2.x:
-    version "2.24.3"
-    resolved "https://registry.yarnpkg.com/webpack-hot-middleware/-/webpack-hot-middleware-2.24.3.tgz#5bb76259a8fc0d97463ab517640ba91d3382d4a6"
-    dependencies:
-      ansi-html "0.0.7"
-      html-entities "^1.2.0"
-      querystring "^0.2.0"
-      strip-ansi "^3.0.0"
   
   webpack-log@^1.1.1, webpack-log@^1.1.2:
     version "1.2.0"

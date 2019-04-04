@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import { Switch, Redirect, withRouter } from "react-router-dom";
 
-import pc from "./pc/index";
-import web from "./web/index";
+import { RouteWidthSubRoutes } from "./utils/utils";
+
+import routes from "./route/routes";
 
 @withRouter
 export default class App extends Component {
@@ -47,8 +48,11 @@ export default class App extends Component {
     return (
       <div className="app">
         <Switch>
-          <Route path="/pc" exact component={pc} />
-          <Route path="/web" component={web} />
+          {/* <Route path="/pc" exact component={pc} />
+          <Route path="/web" component={web} /> */}
+          {routes.map((route, i) => (
+            <RouteWidthSubRoutes key={i} {...route} />
+          ))}
           <Redirect from="/" exact to={`/${pathname}`} />
         </Switch>
       </div>
