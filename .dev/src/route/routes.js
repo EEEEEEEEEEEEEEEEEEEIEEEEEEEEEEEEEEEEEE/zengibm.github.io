@@ -11,7 +11,8 @@ const routes = [
     routes: [
       {
         path: "/web/home",
-        component: LazyLoad(() => import("../web/index/home"))
+        component: LazyLoad(() => import("../web/index/home")),
+        auth: true
       }
     ]
   }

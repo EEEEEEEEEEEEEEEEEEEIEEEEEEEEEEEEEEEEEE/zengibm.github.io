@@ -5,11 +5,25 @@ export default class home extends Component {
     super();
     this.state = {
       contart_list: ["github", "email", "qq"],
-      article_list: []
+      article_list: [],
+      count: 1
     };
   }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        count: 1
+      });
+    }, 1000);
+  }
+  shouldComponentUpdate(nP, nS) {
+    if (nS.count == this.state.count) {
+      return false;
+    }
+  }
   render() {
-    const { contart_list } = this.state;
+    const { contart_list, count } = this.state;
+    console.log("我渲染了", count);
     return (
       <div className="web_home">
         <div className="top">
@@ -25,11 +39,12 @@ export default class home extends Component {
         </div>
         <section className="container">
           <div className="article_list">
+            <h2>文章列表</h2>
             <ul>
-              <h2 className="list_date">2019-2-10</h2>
+              <h3 className="list_date">2019-2-10</h3>
               <li>
                 <div className="content">
-                  <h3>文章标题</h3>
+                  <h4>文章标题</h4>
                   <p>
                     文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
                     文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
@@ -40,99 +55,103 @@ export default class home extends Component {
               </li>
               <li>
                 <div className="content">
-                  <h3>文章标题</h3>
+                  <h4>文章标题</h4>
                   <p>
                     文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
                     文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
                     简介 文章简介 文章简介
                   </p>
                 </div>
-                <span>10:10:30</span>
+                <span>10:10:40</span>
               </li>
               <li>
                 <div className="content">
-                  <h3>文章标题</h3>
+                  <h4>文章标题</h4>
                   <p>
                     文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
                     文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
                     简介 文章简介 文章简介
                   </p>
                 </div>
-                <span>10:10:30</span>
+                <span>10:10:40</span>
+              </li>
+              <li>
+                <div className="content">
+                  <h4>文章标题</h4>
+                  <p>
+                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
+                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
+                    简介 文章简介 文章简介
+                  </p>
+                </div>
+                <span>10:10:40</span>
+              </li>
+              <li>
+                <div className="content">
+                  <h4>文章标题</h4>
+                  <p>
+                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
+                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
+                    简介 文章简介 文章简介
+                  </p>
+                </div>
+                <span>10:10:40</span>
+              </li>
+              <li>
+                <div className="content">
+                  <h4>文章标题</h4>
+                  <p>
+                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
+                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
+                    简介 文章简介 文章简介
+                  </p>
+                </div>
+                <span>10:10:40</span>
+              </li>
+              <li>
+                <div className="content">
+                  <h4>文章标题</h4>
+                  <p>
+                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
+                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
+                    简介 文章简介 文章简介
+                  </p>
+                </div>
+                <span>10:10:40</span>
               </li>
             </ul>
-            <ul>
-              <h2 className="list_date">2019-2-10</h2>
-              <li>
-                <div className="content">
-                  <h3>文章标题</h3>
+          </div>
+
+          <div className="projects">
+            <h3>项目</h3>
+            <div>
+              <ul>
+                <li>
+                  <em>打飞机游戏:</em>
                   <p>
-                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
-                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
-                    简介 文章简介 文章简介
+                    打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏
                   </p>
-                </div>
-                <span>10:10:30</span>
-              </li>
-              <li>
-                <div className="content">
-                  <h3>文章标题</h3>
+                </li>
+                <li>
+                  <em>打飞机游戏:</em>
                   <p>
-                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
-                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
-                    简介 文章简介 文章简介
+                    打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏
                   </p>
-                </div>
-                <span>10:10:30</span>
-              </li>
-              <li>
-                <div className="content">
-                  <h3>文章标题</h3>
+                </li>
+                <li>
+                  <em>打飞机游戏:</em>
                   <p>
-                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
-                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
-                    简介 文章简介 文章简介
+                    打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏
                   </p>
-                </div>
-                <span>10:10:30</span>
-              </li>
-            </ul>
-            <ul>
-              <h2 className="list_date">2019-2-10</h2>
-              <li>
-                <div className="content">
-                  <h3>文章标题</h3>
+                </li>
+                <li>
+                  <em>打飞机游戏:</em>
                   <p>
-                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
-                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
-                    简介 文章简介 文章简介
+                    打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏
                   </p>
-                </div>
-                <span>10:10:30</span>
-              </li>
-              <li>
-                <div className="content">
-                  <h3>文章标题</h3>
-                  <p>
-                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
-                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
-                    简介 文章简介 文章简介
-                  </p>
-                </div>
-                <span>10:10:30</span>
-              </li>
-              <li>
-                <div className="content">
-                  <h3>文章标题</h3>
-                  <p>
-                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
-                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
-                    简介 文章简介 文章简介
-                  </p>
-                </div>
-                <span>10:10:30</span>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
       </div>

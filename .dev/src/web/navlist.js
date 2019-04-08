@@ -5,7 +5,7 @@ export default class navlist extends Component {
     super();
     this.state = {
       on: 0,
-      list: ["首页", "归档", "搜搜", "标签", "其他文章"]
+      list: ["首页", "归档", "搜搜", "标签", "其他"]
     };
   }
   change_class() {}
