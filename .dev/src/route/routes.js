@@ -13,6 +13,10 @@ const routes = [
         path: "/web/home",
         component: LazyLoad(() => import("../web/index/home")),
         auth: true
+      },
+      {
+        path: "/web/article_detail/:id",
+        component: LazyLoad(() => import("../web/index/article_detail"))
       }
     ]
   }

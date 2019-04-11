@@ -1,7 +1,18 @@
 .web_home {
   .top {
     width: 100%;
+    position: relative;
     height: 320px;
+    i {
+      display: block;
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      right: 30px;
+      top: 66px;
+      background: url("../../../common/img/index/menu.png") no-repeat center /
+        100% 100%;
+    }
     .avatar {
       width: 100px;
       height: 100px;
@@ -15,15 +26,15 @@
     }
   }
   h2 {
-    text-align: left;
+    text-align: center;
     font-size: 36px;
-    margin-top: 30px;
+    margin-top: 60px;
+    color: $color1;
   }
   h3 {
     color: $color3;
     text-align: left;
     font-size: 36px;
-    margin-top: 30px;
   }
   .route_link {
     display: flex;
@@ -41,6 +52,7 @@
       }
       &:nth-child(2) {
         background-image: url("../../../common/img/index/email.png");
+        background-size: 60px;
       }
       &:nth-child(3) {
         background-image: url("../../../common/img/index/qq.png");
@@ -54,6 +66,12 @@
     .article_list {
       color: #fff;
       margin-left: 20px;
+      h2 {
+        text-align: left;
+      }
+      h3 {
+        margin-top: 30px;
+      }
       ul {
         .list_date {
           text-align: left;
@@ -77,6 +95,7 @@
           }
           p {
             font-size: 28px;
+            line-height: 1.25;
             text-align: left;
             margin: 10px 0;
           }
@@ -100,6 +119,26 @@
     }
     .projects {
       color: #fff;
+      margin: 80px 0 30px;
+      h3 {
+        margin: 0 auto 30px;
+      }
+      ul {
+        li {
+          font-size: 28px;
+          line-height: 1.35;
+          em {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+          span {
+            padding-left: 30px;
+          }
+          &:not(:last-child) {
+            margin-bottom: 30px;
+          }
+        }
+      }
     }
   }
 }

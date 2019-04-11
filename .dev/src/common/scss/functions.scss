@@ -1,3 +1,7 @@
 @function padding_2($h) {
   // @return calc()
 }
+
+@function vw($px) {
+  @return ($px * 2 / 750) * 100vw;
+}

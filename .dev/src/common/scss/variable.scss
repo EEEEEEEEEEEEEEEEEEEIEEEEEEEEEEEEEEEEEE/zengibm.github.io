@@ -1,19 +1,17 @@
 $vw_design: 750;
 $vw_fontsize: 75;
 
+$color0: #999;
+
 $color1: #dae0e7;
 
 $color2: #006699;
 
-$color3: #9878ff;
+$color3: #0085e6;
 
-$main-bg: #000;
+$main-bg: rgba(0, 0, 0, 0.8);
 
 $b_line: #494949;
-
-@function vw($px) {
-  @return ($px * 2 / 750) * 100vw;
-}
 
 @function rem($px) {
   @return ($px / $vw_fontsize) * 1rem;

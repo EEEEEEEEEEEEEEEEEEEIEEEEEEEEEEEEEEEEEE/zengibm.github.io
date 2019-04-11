@@ -1,5 +1,9 @@
 .navlist {
   width: 100%;
+  h3 {
+    color: $color0;
+    text-align: center;
+  }
   ul {
     display: flex;
     li {
@@ -9,10 +13,16 @@
       padding: calc((88px - 1em) / 2) 0;
       box-sizing: border-box;
       text-align: center;
-      color: $color1;
-      font-size: 32px;
+      color: $color0;
+      font-size: 24px;
+      cursor: pointer;
+      text-decoration: underline;
       &.active {
         color: $color3;
+      }
+      &:not(:first-child) {
+        background: linear-gradient(to right, $color0, $color0) no-repeat left
+          center / 1px 1em;
       }
     }
   }

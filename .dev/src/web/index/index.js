@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Switch, Redirect } from "react-router-dom";
-import NavList from "../navlist";
 
 import { RouteWidthSubRoutes } from "../../utils/utils";
 
@@ -19,7 +18,6 @@ export default class index extends Component {
           ))}
           <Redirect from="/web/" exact to="/web/home" />
         </Switch>
-        <NavList />
       </div>
     );
   }
