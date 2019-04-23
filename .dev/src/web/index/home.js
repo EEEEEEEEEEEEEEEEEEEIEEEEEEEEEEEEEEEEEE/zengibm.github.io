@@ -29,7 +29,7 @@ export default class home extends Component {
     history.push("/web/article_detail/" + id);
   }
   render() {
-    const { contart_list, count } = this.state;
+    const { contart_list, count, img_src } = this.state;
     console.log("我渲染了", count);
     return (
       <div className="web_home">
@@ -68,78 +68,73 @@ export default class home extends Component {
         </div>
         <section className="container">
           <div className="article_list">
-            <h2>文章列表</h2>
-            <ul>
-              <h3 className="list_date">2019-2-10</h3>
-              <li
-                onClick={() => {
-                  this.article_click(111);
-                }}
-              >
-                <div className="content">
-                  <h4>文章标题</h4>
+            <article
+              onClick={() => {
+                this.article_click(111);
+              }}
+            >
+              <div className="small_header">
+                <a>
+                  <img
+                    src={require("./../../common/img/index/1.1.png")}
+                    alt="图片"
+                  />
+                </a>
+              </div>
+              <div className="content">
+                <header>
+                  <h2>
+                    <a>文章标题</a>
+                  </h2>
+                </header>
+                <p>
+                  文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
+                  文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
+                  简介 文章简介 文章简介
+                </p>
+                <footer>
                   <p>
-                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
-                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
-                    简介 文章简介 文章简介
+                    <span>2019-1-2 10:10</span>
+                    <span>阅读全文</span>
                   </p>
-                </div>
-                <span>10:10:40</span>
-              </li>
-              <li
-                onClick={() => {
-                  this.article_click(111);
-                }}
-              >
-                <div className="content">
-                  <h4>文章标题</h4>
+                </footer>
+              </div>
+            </article>
+            <article
+              onClick={() => {
+                this.article_click(111);
+              }}
+            >
+              <div className="small_header">
+                <a>
+                  <img
+                    src={require("./../../common/img/index/1.1.png")}
+                    alt="图片"
+                  />
+                </a>
+              </div>
+              <div className="content">
+                <header>
+                  <h2>
+                    <a>文章标题</a>
+                  </h2>
+                </header>
+                <p>
+                  文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
+                  文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
+                  简介 文章简介 文章简介
+                </p>
+                <footer>
                   <p>
-                    文章简介 文章简介 文章 文章简介 文章简介 文章 文章简介
-                    文章简介 文章 文章简介 文章简介 文章 文章简介 文章简介 文章
-                    简介 文章简介 文章简介
+                    <span>2019-1-2 10:10</span>
+                    <span>阅读全文</span>
                   </p>
-                </div>
-                <span>10:10:40</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="projects">
-            <h3>项目</h3>
-            <div>
-              <ul>
-                <li>
-                  <em>打飞机游戏:</em>
-                  <span>
-                    打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏
-                  </span>
-                </li>
-
-                <li>
-                  <em>打飞机游戏:</em>
-                  <span>
-                    打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏
-                  </span>
-                </li>
-
-                <li>
-                  <em>打飞机游戏:</em>
-                  <span>
-                    打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏
-                  </span>
-                </li>
-
-                <li>
-                  <em>打飞机游戏:</em>
-                  <span>
-                    打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏打飞机游戏
-                  </span>
-                </li>
-              </ul>
-            </div>
+                </footer>
+              </div>
+            </article>
           </div>
         </section>
-        <NavList />
+        {/* <NavList /> */}
       </div>
     );
   }

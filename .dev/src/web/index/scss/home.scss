@@ -2,7 +2,7 @@
   .top {
     width: 100%;
     position: relative;
-    height: 320px;
+    height: 360px;
     i {
       display: block;
       width: 60px;
@@ -24,17 +24,6 @@
         animation: avatar 500ms ease 20ms infinite;
       }
     }
-  }
-  h2 {
-    text-align: center;
-    font-size: 36px;
-    margin-top: 60px;
-    color: $color1;
-  }
-  h3 {
-    color: $color3;
-    text-align: left;
-    font-size: 36px;
   }
   .route_link {
     display: flex;
@@ -61,58 +50,60 @@
   }
   .container {
     margin-top: 30px;
-    padding: 30px 0;
+    padding: 64px 30px 0;
     box-sizing: border-box;
+    background: #f5f5f5;
     .article_list {
-      color: #fff;
-      margin-left: 20px;
-      h2 {
-        text-align: left;
-      }
-      h3 {
-        margin-top: 30px;
-      }
-      ul {
-        .list_date {
-          text-align: left;
-          margin: 30px 0;
-        }
-        li {
-          padding: 0 30px 30px;
-          box-sizing: border-box;
-          background: no-repeat left center / 2px 100%;
-          background-image: linear-gradient(to right, $b_line, $b_line);
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          &:last-child {
-            padding-bottom: 0;
+      color: #333;
+      article {
+        margin-bottom: 30px;
+        box-sizing: border-box;
+        background: #fff;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        .small_header {
+          width: 100%;
+          height: 432px;
+          margin-bottom: 40px;
+          img {
+            width: 100%;
+            height: 100%;
           }
-          h4 {
-            font-size: 36px;
-            transform: translateY(-8px);
+        }
+        .content {
+          header {
+            width: 100%;
+            height: 50px;
+            margin: 6px 0 12px 0;
+            padding: 0 40px;
+            h2 a {
+              text-align: left;
+              color: #000;
+              line-height: 1.1;
+              font-size: 32px;
+            }
           }
           p {
-            font-size: 28px;
-            line-height: 1.25;
+            font-size: 30px;
+            word-break: break-all;
+            line-height: 1.75;
             text-align: left;
             margin: 10px 0;
+            padding: 0 40px;
           }
-          span {
-            font-size: 24px;
-            text-align: right;
-          }
-          &::before {
-            content: "";
-            display: block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: $color3;
-            position: absolute;
-            left: -10px;
-            top: 0;
+          footer {
+            background: linear-gradient(to top, #f3f3f3, #f3f3f3) no-repeat left
+              top / 100px 2px;
+            p {
+              display: flex;
+              justify-content: space-between;
+              span {
+                font-size: 24px;
+              }
+            }
           }
         }
       }
