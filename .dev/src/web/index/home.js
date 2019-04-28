@@ -24,13 +24,11 @@ export default class home extends Component {
     }
   }
   article_click(id) {
-    console.log(this.props);
     const { history } = this.props;
     history.push("/web/article_detail/" + id);
   }
   render() {
     const { contart_list, count, img_src } = this.state;
-    console.log("我渲染了", count);
     return (
       <div className="web_home">
         <div className="top">

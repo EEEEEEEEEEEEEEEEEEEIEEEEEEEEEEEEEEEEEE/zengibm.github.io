@@ -1,0 +1,46 @@
+.acticle_detail {
+  background: #f3f3f3;
+  padding: 20px;
+  color: #333;
+  box-sizing: border-box;
+  padding-top: 108px;
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 88px;
+    background: #fff;
+    h1 {
+      color: #333;
+      font-size: 55px;
+      text-align: center;
+      line-height: 88px;
+    }
+  }
+  .content {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba($color: #000000, $alpha: 0.1);
+    padding: 25px;
+    h3 {
+      font-size: 50px;
+      text-align: center;
+      padding-top: 40px;
+      letter-spacing: 3px;
+    }
+    p {
+      font-size: 32px;
+      line-height: 1.5;
+      margin: 20px 0;
+      box-sizing: border-box;
+      // text-indent: 1em;
+      img {
+        width: 100%;
+        height: auto;
+      }
+      span {
+        font-size: 9pt;
+      }
+    }
+  }
+}

@@ -42,7 +42,6 @@ export default class App extends Component {
      * 判断当前路径,在/目录的话直接跳转/login, 在白名单whiteList数组内的话不做任何改变
      */
     const { pathname } = this.state;
-    console.log(1111, `我渲染了`);
     return (
       <div className="app">
         <Switch>
