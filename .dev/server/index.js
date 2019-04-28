@@ -1,14 +1,13 @@
-const path = require('path');
-const fs = require('fs');
-const Koa = require('koa');
-const router = require('koa-router')();
-const views = require('koa-views');
-const koaStatic = require('koa-static');
-const compress = require('koa-compress');
-const koaBody = require('./libs/koaBody');
-const cors = require('./libs/cors');
+const path = require("path");
+const fs = require("fs");
+const Koa = require("koa");
+const router = require("koa-router")();
+const views = require("koa-views");
+const koaStatic = require("koa-static");
+const compress = require("koa-compress");
+const koaBody = require("./libs/koaBody");
+const cors = require("./libs/cors");
 const app = new Koa();
-
 
 class AngelConfig {
   constructor(options) {
@@ -23,11 +22,11 @@ class AngelConfig {
     //静态文件根目录
     this.config.root = this.config.root
       ? this.config.root
-      : path.join(process.cwd(), 'server/static');
+      : path.join(process.cwd(), "server/static");
     //模板
     this.config.views = this.config.views
       ? this.config.views
-      : path.join(process.cwd(), 'server/views');
+      : path.join(process.cwd(), "server/views");
     //默认静态配置
     this.config.static = this.config.static ? this.config.static : {};
   }
@@ -56,14 +55,14 @@ class AngelServer extends AngelConfig {
     this.app.use(koaBody());
     this.app.use(
       views(this.config.views, {
-        extension: 'ejs'
+        extension: "ejs"
       })
     );
 
     //访问日志
     this.app.use(async (ctx, next) => {
       await next();
-      const rt = ctx.response.get('X-Response-Time');
+      const rt = ctx.response.get("X-Response-Time");
       // ctx.logger.info(
       //   `angel ${ctx.method}`.green,
       //   ` ${ctx.url} - `,
@@ -76,10 +75,10 @@ class AngelServer extends AngelConfig {
       const start = Date.now();
       await next();
       const ms = Date.now() - start;
-      ctx.set('X-Response-Time', `${ms}ms`);
+      ctx.set("X-Response-Time", `${ms}ms`);
     });
     //路由管理
-    this.app.use(this.router('routes')).use(router.allowedMethods());
+    this.app.use(this.router("routes")).use(router.allowedMethods());
 
     // 静态资源
     this.app.use(koaStatic(this.config.root, this.config.static));
@@ -92,7 +91,7 @@ class AngelServer extends AngelConfig {
 }
 
 var server = new AngelServer({
-  routerUrl: path.join(process.cwd(), 'server/libs/controllers.js'), //路由地址
-  configUrl: path.join(process.cwd(), 'server/config/config.default.js'), //默认读取config/config.default.js
-  webpackUrl: path.join(process.cwd(), 'webpack/webpack.dev.js')
+  routerUrl: path.join(process.cwd(), ".dev/server/libs/controllers.js"), //路由地址
+  configUrl: path.join(process.cwd(), ".dev/server/config/config.default.js"), //默认读取config/config.default.js
+  webpackUrl: path.join(process.cwd(), "webpack/webpack.dev.js")
 });
