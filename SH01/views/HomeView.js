@@ -8,7 +8,7 @@ import Carousel from "../components/home/carousel";
 class Home extends Component {
   render() {
     const { login } = this.props;
-    console.log(login);
+    console.log(this.props);
     return (
       <View>
         <Header />

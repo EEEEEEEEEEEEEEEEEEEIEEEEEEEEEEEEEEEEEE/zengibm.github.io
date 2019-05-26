@@ -46,16 +46,20 @@ const parseDomain = str => {
 };
 
 export const domainName = (() => {
-  let fullDomain = window.location.host;
-  if (
-    fullDomain.includes("localhost") ||
-    fullDomain.includes("127.0.0.1") ||
-    fullDomain.includes("192.168.") ||
-    fullDomain.includes("10.12.186.")
-  ) {
+  try {
+    let fullDomain = global.location.host;
+    if (
+      fullDomain.includes("localhost") ||
+      fullDomain.includes("127.0.0.1") ||
+      fullDomain.includes("192.168.") ||
+      fullDomain.includes("10.12.186.")
+    ) {
+      return "hphrj.com";
+    }
+    return parseDomain(fullDomain);
+  } catch (e) {
     return "hphrj.com";
   }
-  return parseDomain(fullDomain);
   // return 'hphrj.com'
 })();
-export const protocol = window.location.protocol;
+export const protocol = !global.location ? "http" : global.location.protocol;
